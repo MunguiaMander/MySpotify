@@ -1,17 +1,19 @@
-#include "library.h"
+#include "Player.h"
 #include "song.h"
+#include "NormalPlayer.h"
+#include "SongLibrary.h"
 #include <iostream>
 #include <string>
 using namespace std;
 
-library::library()
+NormalPlayer::NormalPlayer() : Player()
 {
     first = NULL;
     last = NULL;
     totalSongs = 0;
 }
 
-library::~library()
+NormalPlayer::~NormalPlayer()
 {
     song *actual = first;
     while (actual != NULL)
@@ -23,7 +25,12 @@ library::~library()
     }
 }
 
-void library::addSong(string name, string path)
+song *NormalPlayer::getFirst()
+{
+    return first;
+}
+
+void NormalPlayer::addSong(string name, string path)
 {
     totalSongs++; // Incrementar el contador de canciones
     song *tmpSong = new song(name, path, totalSongs);
@@ -40,7 +47,15 @@ void library::addSong(string name, string path)
     last = tmpSong;
 }
 
-void library::removeSong(int num)
+void NormalPlayer::addSongsFromLibrary(const SongLibrary &songLibrary)
+{
+    for (int i = 0; i < songLibrary.getSongCount(); ++i)
+    {
+        addSong(songLibrary.getSongName(i), songLibrary.getSongPath(i));
+    }
+}
+
+void NormalPlayer::removeSong(int num)
 {
     song *current = first;
     while (current != NULL)
@@ -83,35 +98,42 @@ void library::removeSong(int num)
     }
 }
 
-void library::searchSongs(const string &searchTerm)
+void NormalPlayer::printUpcomingSongs(song *current)
 {
-    song *current = first;
-    bool found = false;
-    cout << "Canciones encontradas:" << endl;
-    while (current != NULL)
+    if (current == NULL)
     {
-        if (current->getName().find(searchTerm) != string::npos)
+        std::cout << "No hay canciones en la lista." << std::endl;
+        return;
+    }
+
+    song *nextSong = current->getNext();
+    if (nextSong == NULL)
+    {
+        std::cout << "No hay más canciones por reproducir." << std::endl;
+    }
+    else
+    {
+        std::cout << "Canciones siguientes:" << std::endl;
+        while (nextSong != NULL)
         {
-            cout << current->getNum() << ") " << current->getName() << endl;
-            found = true;
+            std::cout << nextSong->getNum() << ") " << nextSong->getName() << std::endl;
+            nextSong = nextSong->getNext();
         }
-        current = current->getNext();
     }
-    if (!found)
-    {
-        cout << "No se encontraron canciones con el término de búsqueda \"" << searchTerm << "\"." << endl;
-    }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-
-void library::printSongs()
+void NormalPlayer::clearNormalPlayer()
 {
-    song *actual = first;
-    while (actual != NULL)
+    song *current = first;
+    while (current != NULL)
     {
-        cout << actual->song::getNum() << ") "<<actual->song::getName() << " - " << actual->song::getPath() << endl;
-        actual = actual->song::getNext();
+        song *next = current->getNext();
+        delete current;
+        current = next;
     }
-    cout << endl;
+
+    first = NULL;
+    last = NULL;
+    totalSongs = 0;
 }

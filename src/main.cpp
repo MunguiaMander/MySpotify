@@ -1,25 +1,37 @@
+#include "Player.h"
+#include "NormalPlayer.h"
+#include "BuclePlayer.h"
+#include "MusicPlayer.h"
+#include "SongLibrary.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "library.h"
 #include <unistd.h>
-#include "fmod.hpp"
 
 using namespace std;
 
 void print_main_menu(int option);
-void playMusic();
+void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, BuclePlayer &buclePlayer, SongLibrary &songLibrary);
+void print_song_options(SongLibrary &songLibrary);
+
+int option;
 
 int main(int argc, char const *argv[])
 {
-
-    int option = 0;
+    option = 0;
     print_main_menu(option);
     return 0;
 }
 
 void print_main_menu(int option)
 {
+    MusicPlayer musicPlayer = MusicPlayer();
+    NormalPlayer normalPlayer = NormalPlayer();
+    BuclePlayer buclePlayer = BuclePlayer();
+    SongLibrary songLibrary = SongLibrary();
+    songLibrary.addSong("50 Cent  Many Men.mp3", "../PrimerProyecto/Musica/50 Cent  Many Men.mp3");
+    songLibrary.addSong("Matando - Gueros 97", "../PrimerProyecto/Musica/Matando - Gueros 97.mp3");
+    songLibrary.addSong("Peso Pluma Raul Vega El Belicon", "../PrimerProyecto/Musica/Peso Pluma Raul Vega El Belicon .mp3");
 
     do
     {
@@ -38,81 +50,115 @@ void print_main_menu(int option)
         cout << "5. Salir" << endl;
         cout << "Ingrese una opción: ";
         cin >> option;
-        library library_songs = library();
         switch (option)
         {
         case 1:
-            library_songs.addSong("Sepultura - Arise", "path/to/song");
-            library_songs.addSong("Sepultura - Desperate Cry", "path/to/song");
-            library_songs.addSong("Sepultura - Roots Bloody Roots", "path/to/song");
-            library_songs.addSong("Fuerza Regida X Edgardo - Billete Grande", "path/to/song");
-            library_songs.addSong("Junior H - 1004 Kilometros", "path/to/song");
-            library_songs.addSong("Natanael Cano X Junior H - El Drip", "path/to/song");
-            library_songs.addSong("Slipknot - Before I Forget", "path/to/song");
-            library_songs.addSong("Fuerza Regida X Grupo Frontera - Bebe Dame", "path/to/song");
-            library_songs.printSongs();
-            library_songs.removeSong(1);
-            library_songs.printSongs();
-            library_songs.searchSongs("Fuerza");
-            playMusic();
+            print_song_options(songLibrary);
             break;
         case 2:
-
             break;
         case 3:
+            print_play_options(musicPlayer, normalPlayer, buclePlayer ,songLibrary);
             break;
         case 4:
-
             break;
         case 5:
             break;
         default:
-
             break;
         }
     } while (option != 5);
 }
 
-void print_song_options()
+void print_song_options(SongLibrary &songLibrary)
 {
+    int option = 0;
+    do
+    {
+        cout << "Ingrese la opcion que desea para la biblioteca de canciones" << endl;
+        cout << "1) Ingresar canciones manualmente" << endl;
+        cout << "2) Eliminar canciones por ID" << endl;
+        cout << "3) Eliminar canciones por Nombre" << endl;
+        cout << "4) Buscar canciones" << endl;
+        cout << "5) Listar canciones" << endl;
+        cout << "6) Regresar al menu" << endl;
+        cin >> option;
+        cin.ignore();
+        string songName;
+        string songPath;
+        string tmpSearchRef;
+        int songIndex;
+        switch (option)
+        {
+        case 1:
+            cout << "Ingrese el nombre de la cacion" << endl;
+            getline(cin, songName);
+
+            cout << "Ingrese el path relativo (a la carpeta raiz del archivo ejecutable) de la cancion" << endl;
+            getline(cin, songPath);
+
+            songLibrary.addSong(songName, songPath);
+            break;
+        case 2:
+            songLibrary.printSongs();
+            cout << "Ingrese el numero de cancion a eliminar de la biblioteca de canciones" << endl;
+            cin >> songIndex;
+            songLibrary.removeSongByIndex(songIndex - 1);
+            break;
+        case 3:
+            songLibrary.printSongs();
+            cout << "Ingrese el nombre de la cancion que desea eliminar (Debe ser Exacto)" << endl;
+            getline(cin, tmpSearchRef);
+            songLibrary.removeSongByName(tmpSearchRef);
+            break;
+        case 4:
+            cout << "Ingrese el termino que desea buscar para buscar similitudes en la biblioteca de canciones" << endl;
+            getline(cin, tmpSearchRef);
+            songLibrary.searchAndPrint(tmpSearchRef);
+            break;
+        case 5:
+            songLibrary.printSongs();
+            break;
+        case 6:
+            break;
+
+        default:
+            break;
+        }
+    } while (option != 6);
 }
 
 void print_playlist_options()
 {
 }
 
-void print_play_options()
+void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, BuclePlayer &buclePlayer, SongLibrary &songLibrary)
 {
+    int option = 0;
+    do
+    {
+        cout << "Ingrese la opcion a Reproducir" << endl;
+        cout << "1) Biblioteca General de Musica" << endl;
+        cout << "2) Playlist Personalizada " << endl;
+        cout << "3) Regresar al Menu Principal " << endl;
+        cin >> option;
+        switch (option)
+        {
+        case 1:
+            buclePlayer.addSongsFromLibrary(songLibrary);
+            musicPlayer.playMusic(buclePlayer);
+            buclePlayer.clearBuclePlayer();
+            break;
+        case 2:
+
+            break;
+        default:
+            break;
+        }
+
+    } while (option != 3);
 }
 
 void massive_upload()
 {
-}
-
-void playMusic()
-{
-    FMOD::System *system;
-    FMOD::Sound *sound;
-    FMOD::Channel *channel = 0;
-
-    std::string audioPath = "../PrimerProyecto/Musica/MF DOOM - Doomsday.mp3";
-
-    FMOD::System_Create(&system);
-    system->init(32, FMOD_INIT_NORMAL, NULL);
-    system->createSound(audioPath.c_str(), FMOD_CREATESTREAM, 0, &sound);
-
-    std::cout << "Reproduciendo " << audioPath << std::endl;
-    system->playSound(sound, 0, false, &channel);
-
-    bool isPlaying = true;
-    while (isPlaying)
-    {
-        system->update();
-        channel->isPlaying(&isPlaying);
-        usleep(1000);
-    }
-
-    sound->release();
-    system->close();
-    system->release();
 }
