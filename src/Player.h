@@ -10,4 +10,5 @@ public:
     // Funciones virtuales puras que se sobreescriben
     virtual song *getFirst() = 0;
     virtual void printUpcomingSongs(song *currentSong) = 0;
+    virtual void clearPlayer() = 0;
 };

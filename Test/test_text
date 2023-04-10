@@ -25,6 +25,10 @@ std::string audioPath = "../PrimerProyecto/Musica/Slipknot - Eyeless.mp3";
 std::string audioPath = "../PrimerProyecto/Musica/Slipknot - Spit It Out.mp3";
 std::string audioPath = "../PrimerProyecto/Musica/Slipknot - Sulfur.mp3";
 std::string audioPath = "../PrimerProyecto/Musica/System Of A Down - Toxicity.mp3";
+std::string audioPath = "../PrimerProyecto/Musica/YOVNGCHIMI ft Myke Towers Arcángel Ñengo Flow  Yeruza - BABY FATHER 2.0 .mp3";
+std::string audioPath = "../PrimerProyecto/Musica/Arcangel YOVNGCHIMI - La Ruta.mp3";
+std::string audioPath = "../PrimerProyecto/Musica/Feid Young Miko - Classy 101.mp3";
+std::string audioPath = "../PrimerProyecto/Musica/CRO Neo Pistea Lucho SSJ Obie Wanshot - WOW.mp3";
 ---------------------------------------------------------------------
 songList.addSong("50 Cent  Many Men.mp3", "../PrimerProyecto/Musica/50 Cent  Many Men.mp3");
 songList.addSong("Black Sabbath - God Is Dead", "../PrimerProyecto/Musica/Black Sabbath - God Is Dead.mp3");
@@ -52,6 +56,10 @@ songList.addSong("Slipknot - Eyeless", "../PrimerProyecto/Musica/Slipknot - Eyel
 songList.addSong("Slipknot - Spit It Out", "../PrimerProyecto/Musica/Slipknot - Spit It Out.mp3");
 songList.addSong("Slipknot - Sulfur", "../PrimerProyecto/Musica/Slipknot - Sulfur.mp3");
 songList.addSong("System Of A Down - Toxicity", "../PrimerProyecto/Musica/System Of A Down - Toxicity.mp3");
+songList.addSong("YOVNGCHIMI ft Myke Towers Arcángel Ñengo Flow  Yeruza - BABY FATHER 2.0", "../PrimerProyecto/Musica/YOVNGCHIMI ft Myke Towers Arcángel Ñengo Flow  Yeruza - BABY FATHER 2.0 .mp3");
+songList.addSong("Arcangel YOVNGCHIMI - La Ruta", "../PrimerProyecto/Musica/Arcangel YOVNGCHIMI - La Ruta.mp3");
+songList.addSong("Feid Young Miko - Classy 101", "../PrimerProyecto/Musica/Feid Young Miko - Classy 101.mp3");
+songList.addSong("CRO Neo Pistea Lucho SSJ Obie Wanshot - WOW", "../PrimerProyecto/Musica/CRO Neo Pistea Lucho SSJ Obie Wanshot - WOW.mp3");
 
 
 ---------------------XML----------------------------------

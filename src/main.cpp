@@ -26,8 +26,8 @@ int main(int argc, char const *argv[])
 void print_main_menu(int option)
 {
     MusicPlayer musicPlayer = MusicPlayer();
-    NormalPlayer normalPlayer = NormalPlayer();
-    BuclePlayer buclePlayer = BuclePlayer();
+    NormalPlayer normalPlayer;
+    BuclePlayer buclePlayer;
     SongLibrary songLibrary = SongLibrary();
     songLibrary.addSong("50 Cent  Many Men.mp3", "../PrimerProyecto/Musica/50 Cent  Many Men.mp3");
     songLibrary.addSong("Matando - Gueros 97", "../PrimerProyecto/Musica/Matando - Gueros 97.mp3");
@@ -58,7 +58,7 @@ void print_main_menu(int option)
         case 2:
             break;
         case 3:
-            print_play_options(musicPlayer, normalPlayer, buclePlayer ,songLibrary);
+            print_play_options(musicPlayer, normalPlayer, buclePlayer, songLibrary);
             break;
         case 4:
             break;
@@ -137,18 +137,40 @@ void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, Bu
     int option = 0;
     do
     {
+        int playOption;
         cout << "Ingrese la opcion a Reproducir" << endl;
         cout << "1) Biblioteca General de Musica" << endl;
         cout << "2) Playlist Personalizada " << endl;
         cout << "3) Regresar al Menu Principal " << endl;
         cin >> option;
+        cin.ignore();
         switch (option)
         {
         case 1:
-            buclePlayer.addSongsFromLibrary(songLibrary);
-            musicPlayer.playMusic(buclePlayer);
-            buclePlayer.clearBuclePlayer();
-            break;
+        {
+            normalPlayer = NormalPlayer();
+            buclePlayer = BuclePlayer();
+            cout << "Seleccione la reproduccion que desea" << endl;
+            cout << "1) Normal" << endl;
+            cout << "2) Repetir" << endl;
+            cin >> playOption;
+            cin.ignore();
+            switch (playOption)
+            {
+            case 1:
+                normalPlayer.addSongsFromLibrary(songLibrary);
+                musicPlayer.playMusic(normalPlayer);
+                normalPlayer.clearPlayer();
+                break;
+            case 2:
+                buclePlayer.addSongsFromLibrary(songLibrary);
+                musicPlayer.playMusic(buclePlayer);
+                break;
+            default:
+                break;
+            }
+        }
+        break;
         case 2:
 
             break;

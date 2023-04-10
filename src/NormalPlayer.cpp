@@ -123,7 +123,7 @@ void NormalPlayer::printUpcomingSongs(song *current)
     std::cout << std::endl;
 }
 
-void NormalPlayer::clearNormalPlayer()
+void NormalPlayer::clearPlayer()
 {
     song *current = first;
     while (current != NULL)

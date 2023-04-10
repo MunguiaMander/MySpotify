@@ -18,5 +18,5 @@ public:
     void addSong(std::string name, std::string path);
     void addSongsFromLibrary(const SongLibrary &songLibrary);
     void printUpcomingSongs(song *current) override;
-    void clearBuclePlayer();
+    void clearPlayer() override;
 };

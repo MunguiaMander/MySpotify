@@ -19,5 +19,5 @@ public:
     void addSong(string name, string path);
     void removeSong(int num);
     void printUpcomingSongs(song *current) override;
-    void clearNormalPlayer();
+    void clearPlayer() override;
 };

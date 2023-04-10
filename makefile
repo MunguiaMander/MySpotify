@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -g -I/usr/include/fmod
+CXXFLAGS = -Wall -g -O0 -I/usr/include/fmod
 LDFLAGS = -L/usr/lib/x86_64
 LIBS = -lfmod
 
