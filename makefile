@@ -10,8 +10,11 @@ OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/song.o $(OBJ_DIR)/NormalPlayer.o $(OBJ_DIR)/
 my_spotify: $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) $(LIBS) -o my_spotify
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 .PHONY: clean
 clean:
