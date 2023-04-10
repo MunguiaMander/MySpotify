@@ -56,3 +56,6 @@ cmake ..
 #Compilamos e Instalamos bibliotecas
 make
 sudo make install
+cd ../..
+sudo rm -rf pugixml-1.13/
+echo "Libreria pugixml-1.13 eliminada correctamente"

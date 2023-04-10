@@ -1,8 +1,0 @@
-/usr/local/lib/libpugixml.a
-/usr/local/lib/cmake/pugixml/pugixml-targets.cmake
-/usr/local/lib/cmake/pugixml/pugixml-targets-noconfig.cmake
-/usr/local/lib/cmake/pugixml/pugixml-config-version.cmake
-/usr/local/lib/cmake/pugixml/pugixml-config.cmake
-/usr/local/lib/pkgconfig/pugixml.pc
-/usr/local/include/pugiconfig.hpp
-/usr/local/include/pugixml.hpp
