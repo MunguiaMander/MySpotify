@@ -3,6 +3,7 @@
 #include "BuclePlayer.h"
 #include "MusicPlayer.h"
 #include "SongLibrary.h"
+#include "MusicReader.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,6 +14,7 @@ using namespace std;
 void print_main_menu(int option);
 void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, BuclePlayer &buclePlayer, SongLibrary &songLibrary);
 void print_song_options(SongLibrary &songLibrary);
+void massive_upload(MusicReader &musicReader, SongLibrary &songLibrary);
 
 int option;
 
@@ -29,10 +31,7 @@ void print_main_menu(int option)
     NormalPlayer normalPlayer;
     BuclePlayer buclePlayer;
     SongLibrary songLibrary = SongLibrary();
-    songLibrary.addSong("50 Cent  Many Men.mp3", "../PrimerProyecto/Musica/50 Cent  Many Men.mp3");
-    songLibrary.addSong("Matando - Gueros 97", "../PrimerProyecto/Musica/Matando - Gueros 97.mp3");
-    songLibrary.addSong("Peso Pluma Raul Vega El Belicon", "../PrimerProyecto/Musica/Peso Pluma Raul Vega El Belicon .mp3");
-
+    MusicReader musicReader = MusicReader();
     do
     {
         cout << " \n\n\n\n\n\n\n\n\n\n\n\n"
@@ -50,6 +49,7 @@ void print_main_menu(int option)
         cout << "5. Salir" << endl;
         cout << "Ingrese una opción: ";
         cin >> option;
+        cin.ignore();
         switch (option)
         {
         case 1:
@@ -61,6 +61,7 @@ void print_main_menu(int option)
             print_play_options(musicPlayer, normalPlayer, buclePlayer, songLibrary);
             break;
         case 4:
+            massive_upload(musicReader, songLibrary);
             break;
         case 5:
             break;
@@ -181,6 +182,13 @@ void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, Bu
     } while (option != 3);
 }
 
-void massive_upload()
+void massive_upload(MusicReader &musicReader, SongLibrary &songLibrary)
 {
+    string xmlFilename;
+    cout << "Escriba el path relativo donde se encuentra el archivo de carga masiva" << endl;
+    getline(cin,xmlFilename);
+    musicReader.readXML(xmlFilename, songLibrary);
+
+    cout << "Biblioteca de canciones después de leer el archivo XML:" << endl;
+    songLibrary.printSongs();
 }
