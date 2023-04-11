@@ -45,7 +45,7 @@ Este es el repositorio para el primer proyecto del laboratorio de Estructura de 
 ```
 ***
 
-##Informacion adicional
+## Informacion adicional
 El proyecto esta estructurado de la siguiente manera:
 
 ```bash
