@@ -166,6 +166,7 @@ void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, Bu
             case 2:
                 buclePlayer.addSongsFromLibrary(songLibrary);
                 musicPlayer.playMusic(buclePlayer);
+                buclePlayer.clearPlayer();
                 break;
             default:
                 break;
