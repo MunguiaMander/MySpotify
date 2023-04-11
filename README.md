@@ -1,5 +1,6 @@
 # Primer Proyecto - Laboratorio de Estructura de Datos - My Spotify
-
+**Marco Jose Munguia Alva 201931804**
+*** 
 Este es el repositorio para el primer proyecto del laboratorio de Estructura de Datos, My Spotify. A continuación, se describen los pasos para instalar las dependencias, compilar el proyecto y ejecutarlo.
 
 ## Instrucciones de instalación y compilación
