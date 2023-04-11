@@ -3,7 +3,6 @@
 
 Este es el repositorio para el primer proyecto del laboratorio de Estructura de Datos, My Spotify. A continuación, se describen los pasos para instalar las dependencias, compilar el proyecto y ejecutarlo.
 
-***
 ## Instrucciones de instalación y compilación
 
 1. Abre la línea de comandos e instala make:
