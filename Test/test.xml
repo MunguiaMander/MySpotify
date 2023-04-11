@@ -117,3 +117,23 @@
         <path>Musica/CRO Neo Pistea Lucho SSJ Obie Wanshot - WOW.mp3</path>
     </cancion>
 </Insertar>
+<Eliminar>
+    <cancion>
+        <id>17</id>
+    </cancion>
+</Eliminar>
+<Eliminar>
+    <cancion>
+        <id>18</id>
+    </cancion>
+</Eliminar>
+<Eliminar>
+    <cancion>
+        <id>4</id>
+    </cancion>
+</Eliminar>
+<Eliminar>
+    <cancion>
+        <Nombre>50 Cent Many Men.mp3</Nombre>
+    </cancion>
+</Eliminar>
