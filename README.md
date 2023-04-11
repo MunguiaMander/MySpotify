@@ -19,7 +19,7 @@ Este es el repositorio para el primer proyecto del laboratorio de Estructura de 
 
 3. A continuación, puedes ejecutar los siguientes comandos:
 
-- Para iniciar el script encargado de instalar las dependencias del proyecto y moverlas a las carpetas necesarias para que el makefile funcione correctamente. Posteriormente, compilará con las reglas dadas en el makefile:
+- Para iniciar el script encargado de instalar las dependencias del proyecto y moverlas a las carpetas necesarias para que el makefile funcione correctamente:
 
   ```
   make InitProject
