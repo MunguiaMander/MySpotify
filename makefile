@@ -20,5 +20,5 @@ $(OBJ_DIR):
 clean:
 	rm -f $(OBJS) my_spotify
 
-InitProyect:
-	./InitProyect.sh
+InitProject:
+	./InitProject.sh
