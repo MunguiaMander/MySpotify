@@ -77,7 +77,7 @@ void BuclePlayer::printUpcomingSongs(song *current)
     else
     {
         std::cout << "Canciones siguientes:" << std::endl;
-        for (int i = 0; i < totalSongs - 1; i++) // bucle for en lugar de while
+        for (int i = 0; i < totalSongs - 1; i++) 
         {
             std::cout << nextSong->getNum() << ") " << nextSong->getName() << std::endl;
             nextSong = nextSong->getNext();
