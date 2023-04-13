@@ -15,7 +15,7 @@ void SongLibrary::addSong(const std::string &name, const std::string &path, int 
 {
     if (index < 0 || index > songCount)
     {
-        // Si el índice está fuera de los límites, agregar al final
+        // Si el índice está fuera de los límites, se agrega al final
         index = songCount;
     }
 

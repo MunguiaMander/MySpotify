@@ -160,12 +160,12 @@ void print_play_options(MusicPlayer &musicPlayer, NormalPlayer &normalPlayer, Bu
             {
             case 1:
                 normalPlayer.addSongsFromLibrary(songLibrary);
-                musicPlayer.playMusic(normalPlayer);
+                musicPlayer.playMusic(normalPlayer, songLibrary);
                 normalPlayer.clearPlayer();
                 break;
             case 2:
                 buclePlayer.addSongsFromLibrary(songLibrary);
-                musicPlayer.playMusic(buclePlayer);
+                musicPlayer.playMusic(buclePlayer, songLibrary);
                 buclePlayer.clearPlayer();
                 break;
             default:

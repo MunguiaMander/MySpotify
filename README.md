@@ -102,6 +102,8 @@ El proyecto esta estructurado de la siguiente manera:
 │   ├── Player.h
 │   ├── song.cpp
 │   ├── song.h
+│   ├── StackPlayer.cpp
+│   ├── StackPlayer.h
 │   ├── SongLibrary.cpp
 │   └── SongLibrary.h
 └── Test

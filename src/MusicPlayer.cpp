@@ -1,17 +1,20 @@
 #include "Player.h"
 #include "NormalPlayer.h"
 #include "MusicPlayer.h"
+#include "StackPlayer.h"
+#include "SongLibrary.h"
 #include <unistd.h>
 #include "fmod.hpp"
 #include <fmod_errors.h>
 #include <poll.h>
 #include <fcntl.h>
+#include <limits>
 
 MusicPlayer::MusicPlayer()
 {
 }
 
-void MusicPlayer::playMusic(Player &player)
+void MusicPlayer::playMusic(Player &player, SongLibrary &songLibrary)
 {
     FMOD::System *system;
     FMOD::Sound *sound;
@@ -34,7 +37,7 @@ void MusicPlayer::playMusic(Player &player)
         system->createSound(audioPath.c_str(), FMOD_CREATESTREAM, 0, &sound);
 
         std::cout << "Reproduciendo " << current->getName() << std::endl;
-        std::cout << "q = Para salir | r = Cancion anterior | s = Siguiente cancion | a = Agregar cancion a la Pila | m = Mostrar siguientes canciones" << std::endl;
+        std::cout << "q = Para salir | r = Cancion anterior | s = Siguiente cancion | a = Agregar cancion/es a la Pila | m = Mostrar siguientes canciones" << std::endl;
         system->playSound(sound, 0, false, &channel);
 
         bool isPlaying = true;
@@ -54,12 +57,54 @@ void MusicPlayer::playMusic(Player &player)
             {
                 char inputChar;
                 read(STDIN_FILENO, &inputChar, 1);
-
                 switch (inputChar)
                 {
                 case 'a':
-                    // Agregar una canción a la pila
-                    break;
+                {
+                    fcntl(STDIN_FILENO, F_SETFL, flags);
+                    SongLibrary stackTmp = SongLibrary();
+                    int option = 0;
+                    std::cin.ignore();
+
+                    while (true)
+                    {
+                        std::cout << "0. Agregar una canción a la pila" << std::endl;
+                        std::cout << "1. Salir" << std::endl;
+                        std::cin >> option;
+                        std::cin.ignore();
+
+                        if (option == 0)
+                        {
+                            songLibrary.printSongs();
+                            std::cout << "Ingrese el número de la canción que desea agregar a la pila: ";
+                            int songIndex;
+                            std::cin >> songIndex;
+                            songIndex--;
+
+                            if (songIndex >= 0 && songIndex < songLibrary.getSongCount())
+                            {
+                                stackTmp.addSong(songLibrary.getSongName(songIndex), songLibrary.getSongPath(songIndex));
+                            }
+                            else
+                            {
+                                std::cout << "Índice de canción inválido. Por favor, inténtelo de nuevo." << std::endl;
+                            }
+                        }
+                        else if (option == 1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            std::cout << "Opción inválida. Por favor, inténtelo de nuevo." << std::endl;
+                        }
+                    }
+                    sound->release();
+                    StackPlayer stackPlayer;
+                    stackPlayer.addSongsFromLibrary(stackTmp);
+                    playMusic(stackPlayer, songLibrary);
+                }
+                break;
                 case 's':
                     // Pasar a la siguiente canción
                     isPlaying = false;

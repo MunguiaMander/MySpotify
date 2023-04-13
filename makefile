@@ -5,7 +5,7 @@ LIBS = -lfmod -lpugixml
 
 OBJ_DIR = obj
 SRC_DIR = src
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/song.o $(OBJ_DIR)/NormalPlayer.o $(OBJ_DIR)/BuclePlayer.o $(OBJ_DIR)/MusicPlayer.o $(OBJ_DIR)/SongLibrary.o $(OBJ_DIR)/MusicReader.o
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/song.o $(OBJ_DIR)/NormalPlayer.o $(OBJ_DIR)/BuclePlayer.o $(OBJ_DIR)/MusicPlayer.o $(OBJ_DIR)/SongLibrary.o $(OBJ_DIR)/MusicReader.o $(OBJ_DIR)/StackPlayer.o
 
 my_spotify: $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) $(LIBS) -o my_spotify
